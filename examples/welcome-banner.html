@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Banner</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .welcome-banner {
+    position: relative;
+    width: 364px;
+    height: 236px;
+    background: #145d55;
+    border-radius: 24px;
+    overflow: hidden;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .halo {
+    position: absolute;
+    border: 1px solid #387e6f;
+    border-radius: 50%;
+  }
+
+  .halo--outer {
+    width: 160px;
+    height: 160px;
+    top: -25px;
+    left: 251px;
+  }
+
+  .halo--inner {
+    width: 120px;
+    height: 120px;
+    top: -5px;
+    left: 270px;
+  }
+
+  .sun-emblem {
+    position: absolute;
+    top: 29px;
+    left: 280px;
+    width: 60px;
+    height: 60px;
+    background: #f4ebcf;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sun-emblem svg {
+    width: 32px;
+    height: 32px;
+    stroke: #145d55;
+    stroke-width: 1.8;
+    fill: none;
+  }
+
+  .greeting {
+    font-size: 12px;
+    font-weight: 500;
+    color: #cde4da;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .welcome-title {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 112%;
+    color: #ffffff;
+  }
+
+  .welcome-description {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 150%;
+    color: #cde4da;
+    max-width: 280px;
+  }
+
+  .welcome-action {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 14px;
+    background: #ffffff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+
+  .welcome-action span {
+    font-size: 12px;
+    font-weight: 400;
+    color: #145d55;
+  }
+
+  .welcome-action svg {
+    width: 16px;
+    height: 16px;
+    stroke: #145d55;
+    stroke-width: 1.8;
+    fill: none;
+  }
+</style>
+</head>
+<body>
+
+  <div class="welcome-banner">
+    <div class="halo halo--outer"></div>
+    <div class="halo halo--inner"></div>
+
+    <div class="sun-emblem">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"></circle>
+        <line x1="12" y1="2" x2="12" y2="4"></line>
+        <line x1="12" y1="20" x2="12" y2="22"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="2" y1="12" x2="4" y2="12"></line>
+        <line x1="20" y1="12" x2="22" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </div>
+
+    <p class="greeting">Good morning, Alex</p>
+    <h1 class="welcome-title">A little easier.<br>Every day.</h1>
+    <p class="welcome-description">Your handy tools for a calmer, more organized day.</p>
+
+    <button class="welcome-action">
+      <span>Find your focus</span>
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </button>
+  </div>
+
+</body>
+</html>

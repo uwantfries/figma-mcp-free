@@ -1,4 +1,4 @@
-# Figma MCP Free — Windows installer
+﻿# Figma MCP Free — Windows installer
 # Supports: Claude Desktop, Claude Code, Cursor, VS Code, Windsurf,
 #           Gemini CLI (Antigravity), Zed
 #
@@ -50,7 +50,9 @@ function Inject-McpConfig {
 # ── resolve paths ──────────────────────────────────────────────────────────
 $ScriptDir  = $PSScriptRoot
 $ServerDir  = Join-Path $ScriptDir "server"
+$PluginDir  = Join-Path $ScriptDir "plugin"
 $DistJs     = Join-Path $ServerDir "dist\index.js"
+$PluginCodeJs = Join-Path $PluginDir "dist\code.js"
 $AppData    = $env:APPDATA
 $LocalApp   = $env:LOCALAPPDATA
 
@@ -83,6 +85,25 @@ if (-not (Test-Path $DistJs)) {
     exit 1
 }
 Success "Server built → $DistJs"
+
+# ── build plugin ───────────────────────────────────────────────────────────
+Header "Building Figma plugin"
+
+Info "Installing plugin dependencies..."
+Push-Location $PluginDir
+npm install --silent
+Pop-Location
+
+Info "Building plugin..."
+Push-Location $PluginDir
+npm run build --silent
+Pop-Location
+
+if (-not (Test-Path $PluginCodeJs)) {
+    Write-Host "  ✗ Build failed — $PluginCodeJs not found" -ForegroundColor Red
+    exit 1
+}
+Success "Plugin built → $PluginCodeJs"
 
 # ── config paths ───────────────────────────────────────────────────────────
 $ClaudeDesktopCfg   = Join-Path $AppData    "Claude\claude_desktop_config.json"
@@ -127,7 +148,7 @@ if (Command-Exists "claude") {
 }
 
 # Cursor
-$cursorDetected = (Test-Path $env:LOCALAPPDATA + "\Programs\cursor") -or (Test-Path $CursorGlobalCfg)
+$cursorDetected = (Test-Path ($env:LOCALAPPDATA + "\Programs\cursor")) -or (Test-Path $CursorGlobalCfg)
 Try-Configure "Cursor" $CursorGlobalCfg $cursorDetected
 
 # VS Code
